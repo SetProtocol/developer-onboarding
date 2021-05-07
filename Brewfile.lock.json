@@ -1,0 +1,35 @@
+{
+  "entries": {
+    "tap": {
+      "go-task/tap": {
+        "revision": "1889d1bb6cf4a293f5ffe9fc5f48872f256588ea"
+      }
+    },
+    "cask": {
+      "docker": {
+        "version": "3.3.3,64133",
+        "options": {
+          "full_name": "docker"
+        }
+      }
+    },
+    "brew": {
+      "go-task/tap/go-task": {
+        "version": "3.4.2",
+        "bottle": false
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "big_sur": {
+        "HOMEBREW_VERSION": "3.1.5",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "169422f5ad5f718280c0d0a82036d2b79044f60f",
+        "CLT": "12.5.0.22.9",
+        "Xcode": "12.0",
+        "macOS": "11.3.1"
+      }
+    }
+  }
+}
