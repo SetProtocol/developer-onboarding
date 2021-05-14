@@ -1,0 +1,38 @@
+version: '3.8'
+
+x-base-app-config: &base-app-config
+  build:
+    context: .
+  volumes:
+    - ./:/app
+  environment:
+    - WAIT_HOSTS=db:5432, cache:6379
+  env_file:
+    - .env
+  tty: true
+  depends_on:
+    - db
+    - cache
+services:
+  app:
+    <<: *base-app-config
+    ports:
+      - "$PORT:$PORT"
+  worker:
+    <<: *base-app-config
+    environment:
+      - WAIT_HOSTS=db:5432, cache:6379, app:3001
+      - WAIT_HOSTS_TIMEOUT=120 # Wait a while for the app to come up, to avoid duplicate efforts like migrations.
+    command: "worker"
+  db:
+    image: postgres:11.10-alpine
+    environment:
+      - POSTGRES_USER=set_api
+      # a password is required by the Docker image
+      - POSTGRES_PASSWORD=set_api
+    ports:
+      - 5432:5432
+  cache:
+    image: redis:6.0.5-alpine
+    ports:
+      - 6379:6379
