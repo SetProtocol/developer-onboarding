@@ -3,6 +3,9 @@ version: '3.8'
 x-base-app-config: &base-app-config
   build:
     context: .
+    args:
+      HAS_GEMSPEC: $HAS_GEMSPEC
+      HAS_VENDOR: $HAS_VENDOR
   volumes:
     - ./:/app
     - ~/.ssh:/root/.ssh:ro
