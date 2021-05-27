@@ -2,21 +2,21 @@
 
 set -e
 
-rake() {
-  bundle exec rake db:create
-  bundle exec rake db:migrate
+full_db_setup() {
+  rake db:create
+  rake db:migrate
 }
 
 if [ "$1" = 'web' ]; then
   /wait
-  rake
-  foreman s web
+  full_db_setup
+  exec foreman s web
 fi
 
 if [ "$1" = 'worker' ]; then
   /wait
-  rake
-  foreman s worker
+  full_db_setup
+  exec foreman s worker
 fi
 
 if [ "$1" = 'test' ]; then
@@ -25,7 +25,7 @@ if [ "$1" = 'test' ]; then
   export INFURA_PROJECT_ID=
   /wait
   rake db:migrate
-  exec bundle exec rspec "$@"
+  exec rspec "$@"
 fi
 
 if [ "$1" = 'bump-models' ]; then
