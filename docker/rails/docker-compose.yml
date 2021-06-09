@@ -5,6 +5,8 @@ x-base-app-config: &base-app-config
     context: .
   volumes:
     - ./:/app
+    - ~/.ssh:/root/.ssh:ro
+    - ~/.gitconfig:/root/.gitconfig:ro
   environment:
     - WAIT_HOSTS=db:5432, cache:6379
   env_file:

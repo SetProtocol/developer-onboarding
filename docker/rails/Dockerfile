@@ -24,6 +24,7 @@ RUN apk add --no-cache --update \
         build-base \
         gcc \
         git \
+        openssh \
         git-subtree \
         musl-dev \
         nodejs \
