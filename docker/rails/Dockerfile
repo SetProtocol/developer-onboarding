@@ -28,6 +28,7 @@ RUN apk add --no-cache --update \
         git-subtree \
         musl-dev \
         nodejs \
+        tzdata \
         postgresql-dev && \
     bundle install --no-cache && \
     apk add --no-cache --update libpq
