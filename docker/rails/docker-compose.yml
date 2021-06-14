@@ -11,7 +11,7 @@ x-base-app-config: &base-app-config
     - WAIT_HOSTS=db:5432, cache:6379
   env_file:
     - .env
-    - .env.personal
+    - .env-local
   tty: true
   depends_on:
     - db
