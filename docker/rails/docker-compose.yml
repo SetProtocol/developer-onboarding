@@ -7,7 +7,7 @@ x-base-app-config: &base-app-config
       HAS_GEMSPEC: $HAS_GEMSPEC
       HAS_VENDOR: $HAS_VENDOR
   volumes:
-    - ./:/app
+    - ./:/opt/set-labs/app
     - ~/.ssh:/root/.ssh:ro
     - ~/.gitconfig:/root/.gitconfig:ro
   environment:
@@ -22,6 +22,8 @@ x-base-app-config: &base-app-config
 services:
   app:
     <<: *base-app-config
+    build:
+      target: web
     ports:
       - "$PORT:$PORT"
   worker:

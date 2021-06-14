@@ -35,7 +35,6 @@ RUN --mount=type=cache,target=/var/cache/apk ln -vs /var/cache/apk /etc/apk/cach
 RUN gem install bundler:$BUNDLER_VERSION foreman:$FOREMAN_VERSION
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["$COMMAND"]
 
 FROM base AS has-vendor-true
 # Docker treats files and directory sources differently. Specifically, the directory structures are not preserved when
@@ -54,3 +53,9 @@ COPY Gemfile Gemfile.lock ./
 FROM gemspec-${HAS_GEMSPEC} AS bundle
 ENV BUNDLE_PATH=/bundler
 RUN --mount=type=cache,target=/bundler bundle install
+
+FROM bundle as web
+CMD ["web"]
+
+FROM bundle as worker
+CMD ["worker"]
