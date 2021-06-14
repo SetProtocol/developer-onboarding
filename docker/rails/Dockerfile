@@ -2,7 +2,6 @@
 # see: https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md
 ARG RUBY_VERSION=2.5.9
 ARG ALPINE_VERSION=3.13
-ARG COMMAND=sh
 ARG HAS_GEMSPEC
 ARG HAS_VENDOR
 
