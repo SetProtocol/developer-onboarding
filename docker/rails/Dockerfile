@@ -51,9 +51,11 @@ COPY Gemfile Gemfile.lock ./
 
 FROM gemspec-${HAS_GEMSPEC} AS bundle
 ENV BUNDLE_PATH=/bundler
-RUN --mount=type=cache,target=/bundler bundle install
+RUN --mount=type=cache,target=/bundler bundle install; echo ">>>bundler"; ls -lah /bundler;
 
 FROM bundle as web
+COPY --from=bundle /bundler/** /bundler/
+RUN ls -lah /bundler
 CMD ["web"]
 
 FROM bundle as worker
