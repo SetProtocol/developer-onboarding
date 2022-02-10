@@ -28,6 +28,10 @@ if [ "$1" = 'test' ]; then
   exec rspec "$@"
 fi
 
+if [ "$1" = 'lint' ]; then
+  exec app bundle exec rubocop -a
+fi
+
 if [ "$1" = 'bump-models' ]; then
   # Since the container filesystem may be out-of-date (see: http://docs.docker.oeynet.com/docker-for-mac/osxfs-caching/#cached), 
   # force an update of the git index.
