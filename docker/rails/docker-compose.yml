@@ -9,7 +9,6 @@ x-base-app-config: &base-app-config
     - ~/.gitconfig:/root/.gitconfig:ro
   environment:
     - WAIT_HOSTS=db:5432, cache:6379
-    - COMPOSE_PROJECT_NAME=rails
   env_file:
     - .env
     - .env-local
